@@ -11,12 +11,13 @@ import app.demo.example.com.trailtracker.app.BaseView
  */
 interface IGlobalPresenter : BasePresenter {
     fun permissionsGranted()
-    fun startLocation()
-
+    fun startLocation(buttonText : String)
 }
 
 interface IGlobalView : BaseView<IGlobalPresenter> {
-    fun showLocation(location : String)
+    fun showLatitude(latitude : String)
+    fun showLongitude(longitude : String)
+    fun showAltitude(altitude : String)
     fun showSnack(string : String)
-
+    fun setStartButtonText(text : String)
 }

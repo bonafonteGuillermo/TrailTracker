@@ -59,7 +59,6 @@ class GlobalActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when(requestCode) {
-
             REQUEST_CHECK_SETTINGS ->
                 when(resultCode){
                     Activity.RESULT_OK -> presenter.permissionsGranted()

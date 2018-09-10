@@ -30,8 +30,15 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
         locationProvider.permissionsGranted()
     }
 
-    override fun startLocation() {
-        getCurrentLocation()
+    override fun startLocation(buttonText : String) {
+        if(buttonText == "START"){
+            view.setStartButtonText("FINISH")
+            getCurrentLocation()
+        }else{
+            view.setStartButtonText("FINISH")
+            locationProvider.stopLocationUpdates()
+        }
+
     }
 
     private fun getCurrentLocation() {
@@ -39,7 +46,13 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
                 .observeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
                 .subscribe(
-                        { location ->  view.showLocation(location.latitude.toString())},
+                        { location ->
+                            view.showSnack("Got")
+                            view.showLatitude(location.latitude.toString())
+                            view.showLongitude(location.longitude.toString())
+                            view.showAltitude(location.altitude.toString())
+
+                        },
                         { throwable -> view.showSnack(throwable.toString()) }
                 )
     }

@@ -29,16 +29,33 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
         parent.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         view = LayoutInflater.from(context).inflate(R.layout.activity_splash, parent, true)
 
-        view.btn_start.setOnClickListener { presenter?.startLocation() }
+        view.btn_start.setOnClickListener { presenter?.startLocation(view.btn_start.text.toString()) }
     }
 
     override fun showSnack(string : String) {
         view.snack(string)
     }
 
-    override fun showLocation(location : String) {
-        view.textView.text = location
+    override fun showLatitude(latitude: String) {
+        view.tv_latitude.text = latitude
     }
+
+    override fun showLongitude(longitude: String) {
+        view.tv_longitude.text = longitude
+    }
+
+    override fun showAltitude(altitude: String) {
+        view.tv_altitude.text = altitude
+    }
+
+    override fun setStartButtonText(text: String) {
+        view.btn_start.text = text
+    }
+
+
+
+
+
 
 
 

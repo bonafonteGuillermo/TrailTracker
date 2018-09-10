@@ -20,56 +20,19 @@ import io.reactivex.subjects.PublishSubject
 class LocationProviderImplementation(private val activity: AppCompatActivity) : ILocationProvider {
 
     companion object {
-        private const val UPDATE_INTERVAL : Long = 2000
-        private const val FASTEST_INTERVAL: Long = 100
+        private const val UPDATE_INTERVAL : Long = 5000
         const val REQUEST_CHECK_SETTINGS = 97
-        const val REQUEST_LOCATION_FOR_PLACES = 98
         const val REQUEST_LOCATION = 99
     }
 
     private var mFusedLocationClient: FusedLocationProviderClient? = null
     private var mLocationRequest: LocationRequest? = null
     private var publisher = PublishSubject.create<Location>()
+    private lateinit var locationCallback: LocationCallback
 
     init {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
         mLocationRequest = createLocationRequest()
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun startLocationUpdates(){
-        mFusedLocationClient?.requestLocationUpdates(mLocationRequest,createLocationCallback(), null)
-    }
-
-    private fun createLocationCallback() : LocationCallback {
-        return object : LocationCallback() {
-
-            override fun onLocationResult(locationResult: LocationResult) {
-                super.onLocationResult(locationResult)
-                publisher.onNext(locationResult.lastLocation)
-                mFusedLocationClient?.removeLocationUpdates(this)
-            }}
-    }
-
-    private fun createLocationRequest() : LocationRequest {
-        return LocationRequest.create()
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setInterval(UPDATE_INTERVAL)
-                .setFastestInterval(FASTEST_INTERVAL)
-    }
-
-    private fun checkLocationPermission(): Boolean {
-        return (  ActivityCompat.checkSelfPermission(activity,Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED
-                &&   ActivityCompat.checkSelfPermission(activity,Manifest.permission.ACCESS_COARSE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED)
-    }
-
-    private fun requestLocationPermission(requestCode: Int) {
-        activity.requestPermissions(arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION),
-                requestCode)
     }
 
     @SuppressLint("RestrictedApi")
@@ -102,6 +65,45 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
         startLocationUpdates()
     }
 
+    override fun stopLocationUpdates() {
+        mFusedLocationClient?.removeLocationUpdates(locationCallback)
+    }
 
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates(){
+        mFusedLocationClient?.requestLocationUpdates(mLocationRequest,createLocationCallback(), null)
+    }
 
+    private fun createLocationCallback() : LocationCallback {
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+                for (location in locationResult.locations){
+                    publisher.onNext(location)
+                }
+            }
+        }
+        return locationCallback
+    }
+
+    private fun createLocationRequest() : LocationRequest {
+        return LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(UPDATE_INTERVAL)
+                .setFastestInterval(UPDATE_INTERVAL)
+    }
+
+    private fun checkLocationPermission(): Boolean {
+        return (  ActivityCompat.checkSelfPermission(activity,Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED
+                &&   ActivityCompat.checkSelfPermission(activity,Manifest.permission.ACCESS_COARSE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED)
+    }
+
+    private fun requestLocationPermission(requestCode: Int) {
+        activity.requestPermissions(arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION),
+                requestCode)
+    }
 }

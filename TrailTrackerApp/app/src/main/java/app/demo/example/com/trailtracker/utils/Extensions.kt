@@ -3,8 +3,9 @@ package app.demo.example.com.trailtracker.utils
 import android.support.design.widget.Snackbar
 import android.view.View
 
+
 /**
- * Created by Guille on 10/9/18.
+ * Created by Guillermo Bonafonte Criado
  */
 fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) {
     val snack = Snackbar.make(this, message, length)
