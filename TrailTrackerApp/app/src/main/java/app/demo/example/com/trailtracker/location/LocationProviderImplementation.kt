@@ -72,6 +72,7 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
                 requestCode)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun getMyLocation(): Observable<Location> {
         if(checkLocationPermission()){
             val builder = LocationSettingsRequest.Builder()
@@ -86,7 +87,7 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
             task.addOnFailureListener(activity, { e ->
                 if (e is ResolvableApiException) {
                     try {
-                        //activity.startIntentSenderForResult(e.resolution.intentSender, REQUEST_CHECK_SETTINGS, null, 0, 0, 0,null)
+                        activity.startIntentSenderForResult(e.resolution.intentSender, REQUEST_CHECK_SETTINGS, null, 0, 0, 0,null)
                     } catch (sendEx: IntentSender.SendIntentException) { }
                 }
             })
