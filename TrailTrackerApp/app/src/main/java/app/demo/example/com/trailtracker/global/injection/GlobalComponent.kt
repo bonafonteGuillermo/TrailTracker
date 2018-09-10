@@ -2,6 +2,7 @@ package app.demo.example.com.trailtracker.global.injection
 
 import app.demo.example.com.trailtracker.app.injection.AppComponent
 import app.demo.example.com.trailtracker.global.GlobalActivity
+import app.demo.example.com.trailtracker.location.LocationProviderModule
 import dagger.Component
 
 /**
@@ -10,7 +11,7 @@ import dagger.Component
  *
  */
 @GlobalScope
-@Component(modules = [(GlobalContextModule::class), (GlobalModule::class)], dependencies = [(AppComponent::class)])
+@Component(modules = [(GlobalContextModule::class), (GlobalModule::class), (LocationProviderModule::class)], dependencies = [(AppComponent::class)])
 interface GlobalComponent {
     fun inject(activity: GlobalActivity)
 }

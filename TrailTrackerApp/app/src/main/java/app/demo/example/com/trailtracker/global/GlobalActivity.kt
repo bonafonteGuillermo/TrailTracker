@@ -1,10 +1,15 @@
 package app.demo.example.com.trailtracker.global
 
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.trailtracker.app.App
 import app.demo.example.com.trailtracker.global.injection.DaggerGlobalComponent
 import app.demo.example.com.trailtracker.global.injection.GlobalContextModule
+import app.demo.example.com.trailtracker.location.LocationProviderImplementation.Companion.REQUEST_CHECK_SETTINGS
+import app.demo.example.com.trailtracker.location.LocationProviderImplementation.Companion.REQUEST_LOCATION
 
 import javax.inject.Inject
 
@@ -42,5 +47,23 @@ class GlobalActivity : AppCompatActivity() {
     override fun onDestroy() {
         presenter.onDestroy()
         super.onDestroy()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            when (requestCode) {
+                REQUEST_LOCATION -> presenter.permissionsGranted()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when(requestCode) {
+
+            REQUEST_CHECK_SETTINGS ->
+                when(resultCode){
+                    Activity.RESULT_OK -> presenter.permissionsGranted()
+                }
+        }
     }
 }

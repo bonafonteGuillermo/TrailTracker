@@ -10,9 +10,13 @@ import app.demo.example.com.trailtracker.app.BaseView
  * Created by Guillermo Bonafonte Criado
  */
 interface IGlobalPresenter : BasePresenter {
+    fun permissionsGranted()
+    fun startLocation()
 
 }
 
 interface IGlobalView : BaseView<IGlobalPresenter> {
+    fun showLocation(location : String)
+    fun showSnack(string : String)
 
 }
