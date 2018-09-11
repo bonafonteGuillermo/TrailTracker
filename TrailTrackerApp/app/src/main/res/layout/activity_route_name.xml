@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_choose_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/choose_a_name_for_your_route"
@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="@id/topGuideline" />
 
     <EditText
+        android:id="@+id/et_route_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -27,16 +28,19 @@
         tools:text="@tools:sample/full_names"
         app:layout_constraintEnd_toEndOf="@id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose_name" />
 
     <Button
+        android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:text="@string/save"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:enabled="false"
+        android:textColor="@color/selector_button_save_route_text_color"
+        android:background="@drawable/selector_button_save_route_background"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

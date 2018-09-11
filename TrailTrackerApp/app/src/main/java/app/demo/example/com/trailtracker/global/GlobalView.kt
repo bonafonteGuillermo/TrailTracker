@@ -23,12 +23,12 @@ import kotlinx.android.synthetic.main.activity_global.view.*
  */
 class GlobalView(context: AppCompatActivity) : IGlobalView {
 
-    var view: View
-
     override var context: Context = context
-
     override var presenter: IGlobalPresenter? = null
     override fun constructView(): View = view
+
+    var view: View
+
     init {
         val parent = FrameLayout(context)
         parent.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -36,9 +36,7 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
         view.btn_start.setOnClickListener { presenter?.startLocation(view.btn_start.text.toString()) }
     }
 
-    override fun showSnack(string : String) {
-        view.snack(string)
-    }
+    override fun showSnack(string: String) = view.snack(string)
 
     override fun showLatitude(latitude: String) {
         view.tv_latitude.text = latitude
@@ -57,25 +55,20 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
     }
 
     override fun startChronometer() {
-        view.chronometer.base = SystemClock.elapsedRealtime()
-        view.chronometer.start()
+        view.chronometer.apply {
+            base = SystemClock.elapsedRealtime()
+            start()
+        }
     }
 
-    override fun stopChronometer() {
-        view.chronometer.stop()
-    }
+    override fun stopChronometer() = view.chronometer.stop()
 
-    override fun getChronometerTime(): Long {
-        return SystemClock.elapsedRealtime() - view.chronometer.base
-    }
+    override fun getChronometerTime(): Long = SystemClock.elapsedRealtime() - view.chronometer.base
 
     override fun getStringResource(id: Int): String = context.getStringResource(id)
 
-    override fun navigateToSetRouteNameScreen(route: Route){
-        val extras = Bundle()
-        extras.putParcelable("route", route)
+    override fun navigateToSetRouteNameScreen(route: Route) {
+        val extras = Bundle().apply { putParcelable("route", route) }
         startActivity(RouteNameActivity::class.java, extras)
     }
-
-
 }
