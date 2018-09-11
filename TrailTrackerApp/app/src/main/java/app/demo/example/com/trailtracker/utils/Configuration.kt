@@ -28,10 +28,10 @@ class Configuration {
 
     val BaseUrl : String
         get() {
-            when (BuildConfig.FLAVOR) {
-                FLAVOR_MOCK -> return "https://www.example.com"
-                FLAVOR_QA -> return "https://www.example.com"
-                else -> return "https://www.example.com"
+            return when (BuildConfig.FLAVOR) {
+                FLAVOR_MOCK -> "https://www.example.com"
+                FLAVOR_QA -> "https://www.example.com"
+                else -> "https://www.example.com"
             }
         }
 

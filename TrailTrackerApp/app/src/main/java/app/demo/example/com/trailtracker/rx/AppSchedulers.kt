@@ -24,6 +24,5 @@ class AppSchedulers : Schedulers {
     override fun internet(): Scheduler {
         return INTERNET_SCHEDULERS
     }
-
 }
 

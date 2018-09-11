@@ -43,17 +43,17 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
             val client = LocationServices.getSettingsClient(activity)
             val task = client.checkLocationSettings(builder.build())
 
-            task.addOnSuccessListener(activity, {
+            task.addOnSuccessListener(activity) {
                 startLocationUpdates()
-            })
+            }
 
-            task.addOnFailureListener(activity, { e ->
+            task.addOnFailureListener(activity) { e ->
                 if (e is ResolvableApiException) {
                     try {
                         activity.startIntentSenderForResult(e.resolution.intentSender, REQUEST_CHECK_SETTINGS, null, 0, 0, 0,null)
                     } catch (sendEx: IntentSender.SendIntentException) { }
                 }
-            })
+            }
         }else{
             requestLocationPermission(REQUEST_LOCATION)
         }

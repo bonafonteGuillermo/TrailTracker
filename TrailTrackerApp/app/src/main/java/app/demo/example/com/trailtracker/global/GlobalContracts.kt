@@ -2,6 +2,7 @@ package app.demo.example.com.trailtracker.global
 
 import app.demo.example.com.trailtracker.app.BasePresenter
 import app.demo.example.com.trailtracker.app.BaseView
+import app.demo.example.com.trailtracker.model.Route
 
 /**
  *
@@ -20,4 +21,9 @@ interface IGlobalView : BaseView<IGlobalPresenter> {
     fun showAltitude(altitude : String)
     fun showSnack(string : String)
     fun setStartButtonText(text : String)
+    fun startChronometer()
+    fun stopChronometer()
+    fun getChronometerTime() : Long
+    fun getStringResource(id : Int) : String
+    fun navigateToSetRouteNameScreen(route : Route)
 }

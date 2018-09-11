@@ -1,12 +1,12 @@
 package app.demo.example.com.trailtracker.global
 
-import android.view.View
+import android.location.Location
+import app.demo.example.com.trailtracker.R
 import app.demo.example.com.trailtracker.location.ILocationProvider
-import app.demo.example.com.trailtracker.location.LocationProviderImplementation
-import io.reactivex.disposables.Disposable
+import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.repository.IRepository
 import app.demo.example.com.trailtracker.rx.Schedulers
-import app.demo.example.com.trailtracker.utils.snack
+import java.util.*
 
 /**
  *
@@ -14,31 +14,42 @@ import app.demo.example.com.trailtracker.utils.snack
  *
  * Created by Guillermo Bonafonte Criado
  */
-class GlobalPresenter(private var view: IGlobalView, override var repository: IRepository, private var schedulers: Schedulers, var locationProvider : ILocationProvider) : IGlobalPresenter {
+class GlobalPresenter(private var view: IGlobalView, override var repository: IRepository, private var schedulers: Schedulers, var locationProvider: ILocationProvider) : IGlobalPresenter {
 
-    private lateinit var subscription: Disposable
+    private lateinit var route: Route
 
     override fun onCreate() {
-
     }
 
     override fun onDestroy() {
-        subscription.dispose()
+    }
+
+    override fun startLocation(buttonText: String) {
+        when (buttonText) {
+            view.getStringResource(R.string.start) -> startNewRoute()
+            else -> finishRoute()
+        }
     }
 
     override fun permissionsGranted() {
         locationProvider.permissionsGranted()
     }
 
-    override fun startLocation(buttonText : String) {
-        if(buttonText == "START"){
-            view.setStartButtonText("FINISH")
-            getCurrentLocation()
-        }else{
-            view.setStartButtonText("FINISH")
-            locationProvider.stopLocationUpdates()
-        }
+    private fun finishRoute() {
+        view.setStartButtonText(view.getStringResource(R.string.start))
+        view.stopChronometer()
+        locationProvider.stopLocationUpdates()
+        route.duration = view.getChronometerTime()
+        view.navigateToSetRouteNameScreen(route)
 
+    }
+
+    private fun startNewRoute() {
+        view.setStartButtonText(view.getStringResource(R.string.finish))
+        view.startChronometer()
+        getCurrentLocation()
+        route = Route()
+        route.startDate = Calendar.getInstance().time
     }
 
     private fun getCurrentLocation() {
@@ -46,17 +57,16 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
                 .observeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
                 .subscribe(
-                        { location ->
-                            view.showSnack("Got")
-                            view.showLatitude(location.latitude.toString())
-                            view.showLongitude(location.longitude.toString())
-                            view.showAltitude(location.altitude.toString())
-
-                        },
+                        { location -> locationReceived(location) },
                         { throwable -> view.showSnack(throwable.toString()) }
                 )
     }
 
-
-
+    private fun locationReceived(location: Location) {
+        route.locations.add(location)
+        view.showSnack("Got")
+        view.showLatitude(location.latitude.toString())
+        view.showLongitude(location.longitude.toString())
+        view.showAltitude(location.altitude.toString())
+    }
 }
