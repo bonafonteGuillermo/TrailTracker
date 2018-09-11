@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Trail Tracker</string>
     <string name="dash">-</string>
     <string name="start">START</string>
     <string name="finish">FINISH</string>

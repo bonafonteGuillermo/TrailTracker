@@ -17,6 +17,8 @@ fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) {
     snack.show()
 }
 
+fun String?.isValidRouteName() : Boolean = !isNullOrBlank() && !isNullOrEmpty()
+
 fun Long.toCustomStringFormat(): String =
         String.format("%02d hour, %02d min, %02d sec",
             TimeUnit.MILLISECONDS.toHours(this),
@@ -28,7 +30,6 @@ fun Long.toCustomStringFormat(): String =
 fun Context.getStringResource(id : Int): String = resources.getString(id)
 
 // Extensions widgets
-
 fun EditText.textChanged(textChanged: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
         override fun beforeTextChanged(editable: CharSequence?, p1: Int, p2: Int, p3: Int) {}

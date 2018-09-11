@@ -40,7 +40,6 @@
         android:enabled="false"
         android:textColor="@color/selector_button_save_route_text_color"
         android:background="@drawable/selector_button_save_route_background"
-        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
