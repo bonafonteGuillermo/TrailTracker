@@ -21,4 +21,5 @@ interface IRouteNameView : BaseView<IRouteNamePresenter> {
     fun routeName(): Observable<String>
     fun enableSaveButton()
     fun disableSaveButton()
+    fun navigateToRoutesListScreen()
 }

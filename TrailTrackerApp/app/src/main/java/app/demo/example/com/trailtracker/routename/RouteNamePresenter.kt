@@ -33,7 +33,8 @@ class RouteNamePresenter(private var view: IRouteNameView, override var reposito
 
     override fun saveBtnClicked() {
         route.name = routeName
-        saveRouteInLocalStorage()
+        saveRouteInLocalStorage() //TODO get boolean response from saveInLocalStorage
+        view.navigateToRoutesListScreen()
     }
 
     private fun onRouteNameChanged(): Disposable {
@@ -41,7 +42,7 @@ class RouteNamePresenter(private var view: IRouteNameView, override var reposito
     }
 
     private fun saveRouteInLocalStorage() {
-
+        repository.saveRouteInLocalStorage(route)
     }
 
     private fun checkRouteName(string: String?) {

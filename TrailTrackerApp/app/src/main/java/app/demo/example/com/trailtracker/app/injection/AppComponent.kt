@@ -1,6 +1,5 @@
 package app.demo.example.com.trailtracker.app.injection
 
-import android.content.SharedPreferences
 import app.demo.example.com.trailtracker.data.AppDatabase
 import app.demo.example.com.trailtracker.repository.IRepository
 import app.demo.example.com.trailtracker.rx.Schedulers
@@ -16,7 +15,6 @@ import javax.inject.Singleton
 @Singleton
 @AppScope
 @Component(modules = [
-    (ApiModule::class),
     (AppContextModule::class),
     (NetworkingModule::class),
     (RepositoryModule::class),
