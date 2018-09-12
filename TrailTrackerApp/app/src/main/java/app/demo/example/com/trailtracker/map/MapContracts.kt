@@ -4,6 +4,7 @@ import android.os.Bundle
 import app.demo.example.com.trailtracker.app.BasePresenter
 import app.demo.example.com.trailtracker.app.BaseView
 import app.demo.example.com.trailtracker.model.Route
+import com.google.android.gms.maps.model.LatLng
 
 /**
  *
@@ -13,6 +14,7 @@ import app.demo.example.com.trailtracker.model.Route
  */
 interface IMapPresenter : BasePresenter {
     fun onCreate(route : Route)
+    fun getRouteLatLongArray() : ArrayList<LatLng>
 }
 
 interface IMapView : BaseView<IMapPresenter> {
