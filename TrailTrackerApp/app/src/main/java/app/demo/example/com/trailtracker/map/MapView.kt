@@ -1,6 +1,7 @@
 package app.demo.example.com.trailtracker.map
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.FrameLayout
 import app.demo.example.com.trailtracker.R
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.PolylineOptions
 
 /**
  *
@@ -42,13 +44,13 @@ class MapView(context: AppCompatActivity) : IMapView, OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap?) {
         googleMap ?: return
 
-        //TODO draw PolyLine
-        /*with(googleMap) {
+
+        with(googleMap) {
             addPolyline(PolylineOptions().apply {
                 addAll(presenter?.getRouteLatLongArray())
                 color(Color.BLUE)
             })
-        }*/
+        }
     }
 
     override fun onStart() = mapView.onStart()

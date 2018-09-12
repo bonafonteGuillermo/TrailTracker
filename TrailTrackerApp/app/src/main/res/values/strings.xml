@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Trail Tracker App</string>
     <string name="google_maps_api_key">AIzaSyD5_14S8gEMY28JEYyCGu-uy7PYoAs9Bp4</string>
     <string name="latitude">Latitude: %1$s</string>
     <string name="empty_latitude">Latitude: -</string>
@@ -12,4 +11,5 @@
     <string name="choose_a_name_for_your_route">Choose a name for your route</string>
     <string name="save">SAVE</string>
     <string name="view_routes">VIEW ROUTES</string>
+    <string name="count_locations_example">45</string>
 </resources>

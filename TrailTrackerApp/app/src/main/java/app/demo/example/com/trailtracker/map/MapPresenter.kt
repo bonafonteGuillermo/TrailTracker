@@ -30,8 +30,10 @@ class MapPresenter(private var view: IMapView, override var repository: IReposit
 
     override fun getRouteLatLongArray(): ArrayList<LatLng> {
         val coordList = ArrayList<LatLng>()
-        route.locations.forEach { location ->
-            coordList.add(LatLng(location.latitude,location.longitude))
+        route.locations?.forEach { location ->
+            if(location?.latitude != null && location?.longitude!=null) {
+                coordList.add(LatLng(location.latitude, location.longitude))
+            }
         }
         return coordList
     }

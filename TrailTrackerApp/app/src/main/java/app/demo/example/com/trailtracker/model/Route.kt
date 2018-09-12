@@ -38,12 +38,12 @@ data class Route (
 class RouteConverter {
 
     @TypeConverter
-    fun fromMutableList(locations: MutableList<Location>): String {
+    fun fromMutableList(locations: MutableList<Location>?): String {
         return GsonBuilder().create().toJson(locations)
     }
 
     @TypeConverter
-    fun fromJson(json: String): MutableList<Location> {
+    fun fromJson(json: String?): MutableList<Location> {
         return Gson().fromJson(json, Array<Location>::class.java).toMutableList()
     }
 

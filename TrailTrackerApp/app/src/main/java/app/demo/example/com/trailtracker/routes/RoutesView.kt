@@ -45,7 +45,7 @@ class RoutesView(context: AppCompatActivity) : IRoutesView {
     }
 
     override fun navigateToRouteDetailMap(route: Route) {
-        val extras = Bundle().apply { putParcelable("route", route) }
+        val extras = Bundle().apply { putParcelable("routedetails", route) }
         startActivity(MapActivity::class.java, extras)
     }
 
@@ -62,6 +62,8 @@ class RoutesView(context: AppCompatActivity) : IRoutesView {
             TODO: Check navigation
             TODO: Check permission
             TODO: Check when to start the chronometer
+            TODO: get bundle in MAP ACTIVITY
+            TODO: center map camera in route
          */
     }
 }

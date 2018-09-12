@@ -37,12 +37,14 @@ class MapActivity : AppCompatActivity() {
         view.presenter = presenter
 
         val bundle = intent.extras
-        if (bundle.getParcelable<Route>("route") != null){
-            var route = bundle.getParcelable<Route>("route")
+        if (bundle.getParcelable<Route>("routedetails") != null) {
+            var route = bundle.getParcelable<Route>("routedetails")
             presenter.onCreate(route)
-        }else{
-            presenter.onCreate()
         }
+        /*}else{
+            //TODO Para alguna ruta entra por aqui
+            presenter.onCreate()
+        }*/
 
         view.onCreate(savedInstanceState)
 
