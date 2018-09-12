@@ -11,10 +11,11 @@ import app.demo.example.com.trailtracker.model.Route
  * Created by Guillermo Bonafonte Criado
  */
 interface IRoutesPresenter : BasePresenter {
-
+    fun requestRouteMap(route: Route)
 }
 
 interface IRoutesView : BaseView<IRoutesPresenter> {
-    fun bindRecyclerData(data : List<Route>)
+    fun bindRecyclerData(data: List<Route>)
+    fun navigateToRouteDetailMap(route : Route)
 
 }

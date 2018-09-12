@@ -14,6 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_api_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity android:name=".global.GlobalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".routename.RouteNameActivity" />
-        <activity android:name=".routes.RoutesActivity"></activity>
+        <activity android:name=".routes.RoutesActivity" />
+        <activity android:name=".map.MapActivity"></activity>
     </application>
 
 </manifest>
