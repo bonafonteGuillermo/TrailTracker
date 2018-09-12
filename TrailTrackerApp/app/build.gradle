@@ -23,27 +23,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug {
-            debuggable true
-            minifyEnabled false
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    flavorDimensions 'single'
-    productFlavors {
-        trailMock {
-            resValue "string", "app_name", "Mock ${appName}"
-        }
-        trailQa {
-            resValue "string", "app_name", "QA ${appName}"
-        }
-        trailProduction {
-            resValue "string", "app_name", "${appName}"
-        }
-    }
+
 }
 
 androidExtensions {

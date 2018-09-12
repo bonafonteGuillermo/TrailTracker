@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">Trail Tracker App</string>
     <string name="google_maps_api_key">AIzaSyD5_14S8gEMY28JEYyCGu-uy7PYoAs9Bp4</string>
     <string name="latitude">Latitude: %1$s</string>
     <string name="empty_latitude">Latitude: -</string>
