@@ -16,16 +16,13 @@ import javax.inject.Singleton
 @AppScope
 @Component(modules = [
     (AppContextModule::class),
-    (NetworkingModule::class),
     (RepositoryModule::class),
     (RxModule::class),
     (DatabaseModule::class)]
 )
 
 interface AppComponent {
-
     fun rxSchedulers(): Schedulers
     fun repository(): IRepository
     fun database(): AppDatabase
-
 }

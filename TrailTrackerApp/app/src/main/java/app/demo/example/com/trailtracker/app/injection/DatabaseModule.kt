@@ -12,10 +12,8 @@ import dagger.Provides
  *
  */
 
-
 @Module
 class DatabaseModule {
-
     @Provides
     fun providesAppDatabase(context: Context): AppDatabase =
             Room.databaseBuilder(context, AppDatabase::class.java, "my-app-db").build()
