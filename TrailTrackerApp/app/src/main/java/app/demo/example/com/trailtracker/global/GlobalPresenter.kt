@@ -6,6 +6,8 @@ import app.demo.example.com.trailtracker.location.ILocationProvider
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.repository.IRepository
 import app.demo.example.com.trailtracker.rx.Schedulers
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.util.*
 
 /**
@@ -34,15 +36,12 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
         locationProvider.permissionsGranted()
     }
 
-    override fun viewRoutesClicked() {
-        view.navigateToRoutesList()
-    }
-
     private fun finishRoute() {
         view.setStartButtonText(view.getStringResource(R.string.start))
         view.stopChronometer()
         locationProvider.stopLocationUpdates()
         route.duration = view.getChronometerTime()
+        view.resetView()
         view.navigateToSetRouteNameScreen(route)
 
     }
@@ -66,10 +65,11 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
     }
 
     private fun locationReceived(location: Location) {
+        val df = DecimalFormat("#.##")
+        df.roundingMode = RoundingMode.DOWN
         route.locations.add(location)
-        view.showSnack("Got")
-        view.showLatitude(location.latitude.toString())
-        view.showLongitude(location.longitude.toString())
-        view.showAltitude(location.altitude.toString())
+        view.showLatitude(df.format(location.latitude).toString())
+        view.showLongitude(df.format(location.longitude).toString())
+        view.showAltitude(df.format(location.altitude).toString())
     }
 }

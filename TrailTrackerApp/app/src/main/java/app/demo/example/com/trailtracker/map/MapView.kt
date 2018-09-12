@@ -40,7 +40,15 @@ class MapView(context: AppCompatActivity) : IMapView, OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
-        map = googleMap
+        googleMap ?: return
+
+        //TODO draw PolyLine
+        /*with(googleMap) {
+            addPolyline(PolylineOptions().apply {
+                addAll(presenter?.getRouteLatLongArray())
+                color(Color.BLUE)
+            })
+        }*/
     }
 
     override fun onStart() = mapView.onStart()

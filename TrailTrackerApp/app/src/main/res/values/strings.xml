@@ -1,6 +1,11 @@
 <resources>
     <string name="google_maps_api_key">AIzaSyD5_14S8gEMY28JEYyCGu-uy7PYoAs9Bp4</string>
-    <string name="dash">-</string>
+    <string name="latitude">Latitude: %1$s</string>
+    <string name="empty_latitude">Latitude: -</string>
+    <string name="longitude">Longitude: %1$s</string>
+    <string name="empty_longitude">Longitude: -</string>
+    <string name="altitude">Altitude: %1$sm</string>
+    <string name="empty_altitude">Altitude: -</string>
     <string name="start">START</string>
     <string name="finish">FINISH</string>
     <string name="choose_a_name_for_your_route">Choose a name for your route</string>

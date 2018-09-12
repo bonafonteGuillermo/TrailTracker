@@ -35,21 +35,20 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
         parent.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         view = LayoutInflater.from(context).inflate(R.layout.activity_global, parent, true)
         view.btn_start.setOnClickListener { presenter?.startLocation(view.btn_start.text.toString()) }
-        view.btn_view_routes.setOnClickListener { presenter?.viewRoutesClicked() }
     }
 
     override fun showSnack(string: String) = view.snack(string)
 
     override fun showLatitude(latitude: String) {
-        view.tv_latitude.text = latitude
+        view.tv_latitude.text = context.getString(R.string.latitude,latitude)
     }
 
     override fun showLongitude(longitude: String) {
-        view.tv_longitude.text = longitude
+        view.tv_longitude.text = context.getString(R.string.longitude,longitude)
     }
 
     override fun showAltitude(altitude: String) {
-        view.tv_altitude.text = altitude
+        view.tv_altitude.text = context.getString(R.string.altitude,altitude)
     }
 
     override fun setStartButtonText(text: String) {
@@ -63,6 +62,13 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
         }
     }
 
+    override fun resetView(){
+        view.chronometer.base = SystemClock.elapsedRealtime()
+        view.tv_latitude.text = getStringResource(R.string.empty_latitude)
+        view.tv_longitude.text = getStringResource(R.string.empty_longitude)
+        view.tv_altitude.text = getStringResource(R.string.empty_altitude)
+    }
+
     override fun stopChronometer() = view.chronometer.stop()
 
     override fun getChronometerTime(): Long = SystemClock.elapsedRealtime() - view.chronometer.base
@@ -72,9 +78,5 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
     override fun navigateToSetRouteNameScreen(route: Route) {
         val extras = Bundle().apply { putParcelable("route", route) }
         startActivity(RouteNameActivity::class.java, extras)
-    }
-
-    override fun navigateToRoutesList() {
-        startActivity(RoutesActivity::class.java)
     }
 }

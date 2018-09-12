@@ -55,6 +55,6 @@ class RouteNameView(context: AppCompatActivity) : IRouteNameView {
     }
 
     override fun navigateToRoutesListScreen() {
-        startActivity(RoutesActivity::class.java)
+        startActivity(RoutesActivity::class.java,true)
     }
 }

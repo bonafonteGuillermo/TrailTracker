@@ -16,7 +16,7 @@ interface BaseView<P : BasePresenter> {
     fun constructView(): View
 
     fun startActivity(activityClass: Class<*>,
-                      finish: Boolean,
+                      finish: Boolean = false,
                       extras: Bundle?
     ) {
         val intent = Intent(context, activityClass)
@@ -27,7 +27,7 @@ interface BaseView<P : BasePresenter> {
 
     fun startActivity(activityClass: Class<*>,
                       extras: Bundle
-    ) = startActivity(activityClass, true, extras)
+    ) = startActivity(activityClass, false, extras)
 
-    fun startActivity(activityClass: Class<*>) = startActivity(activityClass, true, null)
+    fun startActivity(activityClass: Class<*>, finish : Boolean = false) = startActivity(activityClass, finish, null)
 }

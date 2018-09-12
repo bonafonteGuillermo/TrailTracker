@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary_light">
 
     <TextView
         android:id="@+id/tv_choose_name"
@@ -38,7 +39,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:enabled="false"
-        android:textColor="@color/selector_button_save_route_text_color"
+        android:textColor="@color/white"
         android:background="@drawable/selector_button_save_route_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
