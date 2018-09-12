@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.trailtracker.R
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.routename.RouteNameActivity
+import app.demo.example.com.trailtracker.routes.RoutesActivity
 import app.demo.example.com.trailtracker.utils.getStringResource
 import app.demo.example.com.trailtracker.utils.snack
 import kotlinx.android.synthetic.main.activity_global.view.*
@@ -34,6 +35,7 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
         parent.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         view = LayoutInflater.from(context).inflate(R.layout.activity_global, parent, true)
         view.btn_start.setOnClickListener { presenter?.startLocation(view.btn_start.text.toString()) }
+        view.btn_view_routes.setOnClickListener { presenter?.viewRoutesClicked() }
     }
 
     override fun showSnack(string: String) = view.snack(string)
@@ -70,5 +72,9 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
     override fun navigateToSetRouteNameScreen(route: Route) {
         val extras = Bundle().apply { putParcelable("route", route) }
         startActivity(RouteNameActivity::class.java, extras)
+    }
+
+    override fun navigateToRoutesList() {
+        startActivity(RoutesActivity::class.java)
     }
 }

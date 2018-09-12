@@ -15,7 +15,6 @@ import java.util.*
  * Created by Guillermo Bonafonte Criado
  */
 class GlobalPresenter(private var view: IGlobalView, override var repository: IRepository, private var schedulers: Schedulers, var locationProvider: ILocationProvider) : IGlobalPresenter {
-
     private lateinit var route: Route
 
     override fun onCreate() {
@@ -33,6 +32,10 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
 
     override fun permissionsGranted() {
         locationProvider.permissionsGranted()
+    }
+
+    override fun viewRoutesClicked() {
+        view.navigateToRoutesList()
     }
 
     private fun finishRoute() {

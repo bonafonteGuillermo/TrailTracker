@@ -5,4 +5,5 @@
     <string name="finish">FINISH</string>
     <string name="choose_a_name_for_your_route">Choose a name for your route</string>
     <string name="save">SAVE</string>
+    <string name="view_routes">VIEW ROUTES</string>
 </resources>
