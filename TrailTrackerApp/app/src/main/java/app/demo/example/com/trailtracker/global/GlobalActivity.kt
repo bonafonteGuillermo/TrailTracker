@@ -64,6 +64,7 @@ class GlobalActivity : AppCompatActivity() {
             REQUEST_CHECK_SETTINGS ->
                 when(resultCode){
                     Activity.RESULT_OK -> presenter.permissionsGranted()
+                    else -> presenter.permissionsDenied()
                 }
         }
     }

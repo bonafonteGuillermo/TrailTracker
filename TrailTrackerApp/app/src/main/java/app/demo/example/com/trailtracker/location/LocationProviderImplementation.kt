@@ -62,7 +62,7 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
     }
 
     override fun permissionsGranted() {
-        startLocationUpdates()
+        getMyLocation()
     }
 
     override fun stopLocationUpdates() {
