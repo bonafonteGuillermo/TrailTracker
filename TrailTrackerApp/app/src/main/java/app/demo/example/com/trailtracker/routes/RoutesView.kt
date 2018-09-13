@@ -53,9 +53,9 @@ class RoutesView(context: AppCompatActivity) : IRoutesView {
 
     private fun itemClicked(item: Route) {
         presenter?.requestRouteMap(item)
-
         /*
             TODO: get bundle in MAP ACTIVITY
+            TODO: check why app crash after coming back from map and selecting other route
             TODO: center map camera in route
          */
     }
