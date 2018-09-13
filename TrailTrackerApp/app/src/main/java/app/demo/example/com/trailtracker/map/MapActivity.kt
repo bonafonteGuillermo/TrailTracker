@@ -40,14 +40,8 @@ class MapActivity : AppCompatActivity() {
         if (bundle.getParcelable<Route>("routedetails") != null) {
             var route = bundle.getParcelable<Route>("routedetails")
             presenter.onCreate(route)
+            view.onCreate(savedInstanceState)
         }
-        /*}else{
-            //TODO Para alguna ruta entra por aqui
-            presenter.onCreate()
-        }*/
-
-        view.onCreate(savedInstanceState)
-
     }
 
     override fun onStart() {

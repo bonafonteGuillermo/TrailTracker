@@ -46,17 +46,12 @@ class RoutesView(context: AppCompatActivity) : IRoutesView {
 
     override fun navigateToRouteDetailMap(route: Route) {
         val extras = Bundle().apply { putParcelable("routedetails", route) }
-        startActivity(MapActivity::class.java, extras)
+        startActivity(MapActivity::class.java,extras)
     }
 
     override fun showSnack(string: String) = view.snack(string)
 
     private fun itemClicked(item: Route) {
         presenter?.requestRouteMap(item)
-        /*
-            TODO: get bundle in MAP ACTIVITY
-            TODO: check why app crash after coming back from map and selecting other route
-            TODO: center map camera in route
-         */
     }
 }

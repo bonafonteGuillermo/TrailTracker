@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import app.demo.example.com.trailtracker.model.Route
 import kotlin.properties.Delegates
 import app.demo.example.com.trailtracker.R
+import app.demo.example.com.trailtracker.utils.toCustomDateFormatString
 import app.demo.example.com.trailtracker.utils.toCustomStringFormat
 import kotlinx.android.synthetic.main.route_item_layout.view.*
 
@@ -31,9 +32,9 @@ class RoutesAdapter(data: List<Route> = emptyList(), private val listener: Liste
 
         fun bind(item: Route) = with(itemView) {
             tv_route_name.text = item.name
-            tv_route_start_date.text = item.startDate.toString()
+            tv_route_start_date.text = item.startDate.toCustomDateFormatString()
             tv_route_count_locations.text = item.locations.size.toString()
-            tv_route_duration.text = item.duration?.toCustomStringFormat()
+            tv_route_duration.text = context.getString(R.string.route_duration,item.duration?.toCustomStringFormat())
             setOnClickListener { listener(item) }
         }
     }

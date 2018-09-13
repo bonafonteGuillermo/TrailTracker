@@ -6,7 +6,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import java.util.*
 import java.util.concurrent.TimeUnit
+import java.text.SimpleDateFormat
 
 
 /**
@@ -26,6 +28,11 @@ fun Long.toCustomStringFormat(): String =
             TimeUnit.MILLISECONDS.toSeconds(this) -
                     TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(this))
 )
+
+fun Date?.toCustomDateFormatString() : String {
+    val df = SimpleDateFormat("EEE dd/MMM HH:mm:ss")
+    return df.format(this)
+}
 
 fun Context.getStringResource(id : Int): String = resources.getString(id)
 
