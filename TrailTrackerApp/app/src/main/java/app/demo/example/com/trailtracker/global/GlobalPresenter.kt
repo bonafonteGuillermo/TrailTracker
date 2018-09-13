@@ -1,11 +1,13 @@
 package app.demo.example.com.trailtracker.global
 
+import android.annotation.SuppressLint
 import android.location.Location
 import app.demo.example.com.trailtracker.R
 import app.demo.example.com.trailtracker.location.ILocationProvider
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.repository.IRepository
 import app.demo.example.com.trailtracker.rx.Schedulers
+import io.reactivex.Observable
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
@@ -39,6 +41,7 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
     override fun permissionsGranted() {
         locationProvider.permissionsGranted()
     }
+
     override fun permissionsDenied() {
         view.hideProgressBar()
     }
@@ -50,7 +53,6 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
         route.duration = view.getChronometerTime()
         view.resetView()
         view.navigateToSetRouteNameScreen(route)
-
     }
 
     private fun startNewRoute() {
@@ -65,25 +67,30 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
                 .observeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
 
+        onFirstLocationReceived(observable)
+        onFollowingLocationsReceived(observable)
+    }
+
+    @SuppressLint("CheckResult")
+    private fun onFollowingLocationsReceived(observable: Observable<Location>) {
+        observable.skip(1).subscribe(
+                { locationReceived(it) },
+                { view.showSnack(it.toString()) }
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    private fun onFirstLocationReceived(observable: Observable<Location>) {
         observable.take(1).subscribe(
-                { location ->
+                {
                     view.hideProgressBar()
                     startNewRoute()
-                    locationReceived(location)
-                    view.showSnack("FIRST")
+                    locationReceived(it)
                 },
-                { throwable -> view.showSnack(throwable.toString()) }
+                {
+                    view.showSnack(it.toString())
+                }
         )
-
-        observable.skip(1).subscribe(
-                { location ->
-                    locationReceived(location)
-                    view.showSnack("NEXT")
-                },
-                { throwable -> view.showSnack(throwable.toString()) }
-        )
-
-
     }
 
     private fun locationReceived(location: Location) {

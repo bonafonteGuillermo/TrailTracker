@@ -11,6 +11,7 @@ import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
+import java.lang.Exception
 
 /**
  *
@@ -35,25 +36,15 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
         mLocationRequest = createLocationRequest()
     }
 
-    @SuppressLint("RestrictedApi")
     override fun getMyLocation(): Observable<Location> {
         if(checkLocationPermission()){
-            val builder = LocationSettingsRequest.Builder()
-                    .addLocationRequest(mLocationRequest!!)
+            val locationRequestBuilder = LocationSettingsRequest.Builder()
+            val builder = locationRequestBuilder.addLocationRequest(mLocationRequest!!)
             val client = LocationServices.getSettingsClient(activity)
             val task = client.checkLocationSettings(builder.build())
 
-            task.addOnSuccessListener(activity) {
-                startLocationUpdates()
-            }
-
-            task.addOnFailureListener(activity) { e ->
-                if (e is ResolvableApiException) {
-                    try {
-                        activity.startIntentSenderForResult(e.resolution.intentSender, REQUEST_CHECK_SETTINGS, null, 0, 0, 0,null)
-                    } catch (sendEx: IntentSender.SendIntentException) { }
-                }
-            }
+            task.addOnSuccessListener(activity) { startLocationUpdates() }
+            task.addOnFailureListener(activity) { e -> requestEnableGPS(e) }
         }else{
             requestLocationPermission(REQUEST_LOCATION)
         }
@@ -95,9 +86,9 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
 
     private fun checkLocationPermission(): Boolean {
         return (  ActivityCompat.checkSelfPermission(activity,Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED
+                == PackageManager.PERMISSION_GRANTED
                 &&   ActivityCompat.checkSelfPermission(activity,Manifest.permission.ACCESS_COARSE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED)
+                == PackageManager.PERMISSION_GRANTED)
     }
 
     private fun requestLocationPermission(requestCode: Int) {
@@ -105,5 +96,15 @@ class LocationProviderImplementation(private val activity: AppCompatActivity) : 
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION),
                 requestCode)
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun requestEnableGPS(e: Exception) {
+        if (e is ResolvableApiException) {
+            try {
+                activity.startIntentSenderForResult(e.resolution.intentSender, REQUEST_CHECK_SETTINGS, null, 0, 0, 0, null)
+            } catch (sendEx: IntentSender.SendIntentException) {
+            }
+        }
     }
 }

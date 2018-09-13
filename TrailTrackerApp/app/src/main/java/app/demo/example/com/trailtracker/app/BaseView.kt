@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.*
 import android.os.Bundle
 import android.view.View
+import app.demo.example.com.trailtracker.utils.snack
 
 /**
  * Created by Guillermo Bonafonte Criado

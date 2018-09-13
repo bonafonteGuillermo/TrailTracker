@@ -36,12 +36,9 @@ class GlobalActivity : AppCompatActivity() {
                 .build()
                 .inject(this)
 
-
         setContentView(view.constructView())
         view.presenter = presenter
-
         presenter.onCreate()
-
     }
 
     override fun onDestroy() {

@@ -12,11 +12,11 @@ import io.reactivex.disposables.Disposable
  * Created by Guillermo Bonafonte Criado
  */
 class RoutesPresenter(private var view: IRoutesView, override var repository: IRepository, private var schedulers: Schedulers) : IRoutesPresenter {
+
     private lateinit var subscription: Disposable
 
     override fun onCreate() {
         subscription = getRoutes()
-
     }
 
     override fun onDestroy() {
@@ -32,13 +32,8 @@ class RoutesPresenter(private var view: IRoutesView, override var repository: IR
                 .subscribeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
                 .subscribe(
-                        { routes ->
-                            view.bindRecyclerData(routes)
-
-                        },
-                        {
-
-                        }
+                        { view.bindRecyclerData(it) },
+                        {  view.showSnack(it.toString()) }
                 )
     }
 }

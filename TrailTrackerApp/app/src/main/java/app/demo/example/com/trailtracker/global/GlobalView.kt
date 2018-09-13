@@ -3,15 +3,14 @@ package app.demo.example.com.trailtracker.global
 import android.content.Context
 import android.os.Bundle
 import android.os.SystemClock
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.trailtracker.R
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.routename.RouteNameActivity
-import app.demo.example.com.trailtracker.routes.RoutesActivity
 import app.demo.example.com.trailtracker.utils.getStringResource
 import app.demo.example.com.trailtracker.utils.snack
 import kotlinx.android.synthetic.main.activity_global.view.*
@@ -23,10 +22,11 @@ import kotlinx.android.synthetic.main.activity_global.view.*
  * Created by Guillermo Bonafonte Criado
  */
 class GlobalView(context: AppCompatActivity) : IGlobalView {
-    override var context: Context = context
 
+    override var context: Context = context
     override var presenter: IGlobalPresenter? = null
     override fun constructView(): View = view
+
     var view: View
 
     init {
@@ -61,6 +61,16 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
         }
     }
 
+    override fun showProgressBar() {
+        view.btn_start.visibility = View.INVISIBLE
+        view.progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        view.btn_start.visibility = View.VISIBLE
+        view.progressBar.visibility = View.GONE
+    }
+
     override fun resetView(){
         view.chronometer.base = SystemClock.elapsedRealtime()
         view.tv_latitude.text = getStringResource(R.string.empty_latitude)
@@ -77,15 +87,5 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
     override fun navigateToSetRouteNameScreen(route: Route) {
         val extras = Bundle().apply { putParcelable("route", route) }
         startActivity(RouteNameActivity::class.java, extras)
-    }
-
-    override fun showProgressBar() {
-        view.btn_start.visibility = View.INVISIBLE
-        view.progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideProgressBar() {
-        view.btn_start.visibility = View.VISIBLE
-        view.progressBar.visibility = View.GONE
     }
 }

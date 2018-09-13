@@ -49,19 +49,12 @@ class RoutesView(context: AppCompatActivity) : IRoutesView {
         startActivity(MapActivity::class.java, extras)
     }
 
+    override fun showSnack(string: String) = view.snack(string)
+
     private fun itemClicked(item: Route) {
-//        view.snack(item.name!!)
         presenter?.requestRouteMap(item)
 
-        /*TODO **************
-
-            TODO: Check Disposable in GlobalPresenter, do like in RoutesPresenter
-            TODO: Bind all the data in the recycler
-            TODO: Check if the saveRouteInLocalStorage has worked fine returning boolean value
-            TODO: Refactor code
-            TODO: Check navigation
-            TODO: Check permission
-            TODO: Check when to start the chronometer
+        /*
             TODO: get bundle in MAP ACTIVITY
             TODO: center map camera in route
          */
