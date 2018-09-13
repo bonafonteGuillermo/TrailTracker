@@ -21,16 +21,20 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".global.GlobalActivity">
+        <activity android:name=".global.GlobalActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".routename.RouteNameActivity" />
-        <activity android:name=".routes.RoutesActivity" />
-        <activity android:name=".map.MapActivity"></activity>
+        <activity android:name=".routename.RouteNameActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".routes.RoutesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".map.MapActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
