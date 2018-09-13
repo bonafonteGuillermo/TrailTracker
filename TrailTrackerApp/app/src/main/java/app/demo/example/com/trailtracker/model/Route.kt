@@ -26,7 +26,7 @@ data class Route (
     var name: String? = null,
 
     @ColumnInfo(name = "start_date")
-    var startDate: Date? = null,
+    var startDate: Date? = Date(),
 
     @ColumnInfo(name = "duration")
     var duration: Long? = null,
@@ -49,7 +49,7 @@ class RouteConverter {
 
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {
-        return if (value == null) null else Date(value)
+        return if (value == null) Date() else Date(value)
     }
 
     @TypeConverter

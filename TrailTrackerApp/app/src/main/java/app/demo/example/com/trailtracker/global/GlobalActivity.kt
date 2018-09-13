@@ -54,6 +54,8 @@ class GlobalActivity : AppCompatActivity() {
             when (requestCode) {
                 REQUEST_LOCATION -> presenter.permissionsGranted()
             }
+        }else{
+            presenter.permissionsDenied()
         }
     }
 

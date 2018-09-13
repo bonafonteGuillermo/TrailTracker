@@ -17,6 +17,7 @@ import java.util.*
  * Created by Guillermo Bonafonte Criado
  */
 class GlobalPresenter(private var view: IGlobalView, override var repository: IRepository, private var schedulers: Schedulers, var locationProvider: ILocationProvider) : IGlobalPresenter {
+
     private lateinit var route: Route
 
     override fun onCreate() {
@@ -27,13 +28,19 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
 
     override fun startLocation(buttonText: String) {
         when (buttonText) {
-            view.getStringResource(R.string.start) -> startNewRoute()
+            view.getStringResource(R.string.start) -> {
+                view.showProgressBar()
+                getCurrentLocation()
+            }
             else -> finishRoute()
         }
     }
 
     override fun permissionsGranted() {
         locationProvider.permissionsGranted()
+    }
+    override fun permissionsDenied() {
+        view.hideProgressBar()
     }
 
     private fun finishRoute() {
@@ -49,19 +56,34 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
     private fun startNewRoute() {
         view.setStartButtonText(view.getStringResource(R.string.finish))
         view.startChronometer()
-        getCurrentLocation()
         route = Route()
         route.startDate = Calendar.getInstance().time
     }
 
     private fun getCurrentLocation() {
-        locationProvider.getMyLocation()
+        val observable = locationProvider.getMyLocation()
                 .observeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
-                .subscribe(
-                        { location -> locationReceived(location) },
-                        { throwable -> view.showSnack(throwable.toString()) }
-                )
+
+        observable.take(1).subscribe(
+                { location ->
+                    view.hideProgressBar()
+                    startNewRoute()
+                    locationReceived(location)
+                    view.showSnack("FIRST")
+                },
+                { throwable -> view.showSnack(throwable.toString()) }
+        )
+
+        observable.skip(1).subscribe(
+                { location ->
+                    locationReceived(location)
+                    view.showSnack("NEXT")
+                },
+                { throwable -> view.showSnack(throwable.toString()) }
+        )
+
+
     }
 
     private fun locationReceived(location: Location) {

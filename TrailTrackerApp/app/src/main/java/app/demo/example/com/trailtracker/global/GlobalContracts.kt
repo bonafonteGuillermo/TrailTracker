@@ -13,6 +13,7 @@ import app.demo.example.com.trailtracker.model.Route
 interface IGlobalPresenter : BasePresenter {
     fun permissionsGranted()
     fun startLocation(buttonText : String)
+    fun permissionsDenied()
 }
 
 interface IGlobalView : BaseView<IGlobalPresenter> {
@@ -27,4 +28,6 @@ interface IGlobalView : BaseView<IGlobalPresenter> {
     fun getStringResource(id : Int) : String
     fun navigateToSetRouteNameScreen(route : Route)
     fun resetView()
+    fun showProgressBar()
+    fun hideProgressBar()
 }

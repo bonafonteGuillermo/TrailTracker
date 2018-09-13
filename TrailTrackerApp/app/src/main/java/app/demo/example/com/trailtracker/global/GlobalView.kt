@@ -23,11 +23,10 @@ import kotlinx.android.synthetic.main.activity_global.view.*
  * Created by Guillermo Bonafonte Criado
  */
 class GlobalView(context: AppCompatActivity) : IGlobalView {
-
     override var context: Context = context
+
     override var presenter: IGlobalPresenter? = null
     override fun constructView(): View = view
-
     var view: View
 
     init {
@@ -78,5 +77,15 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
     override fun navigateToSetRouteNameScreen(route: Route) {
         val extras = Bundle().apply { putParcelable("route", route) }
         startActivity(RouteNameActivity::class.java, extras)
+    }
+
+    override fun showProgressBar() {
+        view.btn_start.visibility = View.INVISIBLE
+        view.progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        view.btn_start.visibility = View.VISIBLE
+        view.progressBar.visibility = View.GONE
     }
 }
