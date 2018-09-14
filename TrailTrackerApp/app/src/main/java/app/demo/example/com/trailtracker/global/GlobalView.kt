@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import app.demo.example.com.trailtracker.R
+import app.demo.example.com.trailtracker.app.BaseView.Companion.EXTRA_ROUTE
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.routename.RouteNameActivity
 import app.demo.example.com.trailtracker.utils.getStringResource
@@ -85,7 +86,7 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
     override fun getStringResource(id: Int): String = context.getStringResource(id)
 
     override fun navigateToSetRouteNameScreen(route: Route) {
-        val extras = Bundle().apply { putParcelable("route", route) }
+        val extras = Bundle().apply { putParcelable(EXTRA_ROUTE, route) }
         startActivity(RouteNameActivity::class.java, extras)
     }
 }

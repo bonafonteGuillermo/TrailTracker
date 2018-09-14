@@ -3,6 +3,7 @@ package app.demo.example.com.trailtracker.map
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.trailtracker.app.App
+import app.demo.example.com.trailtracker.app.BaseView.Companion.EXTRA_ROUTE_DETAIL
 import app.demo.example.com.trailtracker.map.injection.DaggerMapComponent
 import app.demo.example.com.trailtracker.map.injection.MapContextModule
 import app.demo.example.com.trailtracker.model.Route
@@ -37,8 +38,8 @@ class MapActivity : AppCompatActivity() {
         view.presenter = presenter
 
         val bundle = intent.extras
-        if (bundle.getParcelable<Route>("routedetails") != null) {
-            var route = bundle.getParcelable<Route>("routedetails")
+        if (bundle.getParcelable<Route>(EXTRA_ROUTE_DETAIL) != null) {
+            var route = bundle.getParcelable<Route>(EXTRA_ROUTE_DETAIL)
             presenter.onCreate(route)
             view.onCreate(savedInstanceState)
         }

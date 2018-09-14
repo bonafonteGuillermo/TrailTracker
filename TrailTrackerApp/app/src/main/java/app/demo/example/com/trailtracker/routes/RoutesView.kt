@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import app.demo.example.com.trailtracker.R
+import app.demo.example.com.trailtracker.app.BaseView.Companion.EXTRA_ROUTE_DETAIL
 import app.demo.example.com.trailtracker.map.MapActivity
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.routename.RouteNameActivity
@@ -45,7 +46,7 @@ class RoutesView(context: AppCompatActivity) : IRoutesView {
     }
 
     override fun navigateToRouteDetailMap(route: Route) {
-        val extras = Bundle().apply { putParcelable("routedetails", route) }
+        val extras = Bundle().apply { putParcelable(EXTRA_ROUTE_DETAIL, route) }
         startActivity(MapActivity::class.java,extras)
     }
 

@@ -11,6 +11,11 @@ import app.demo.example.com.trailtracker.utils.snack
  */
 interface BaseView<P : BasePresenter> {
 
+    companion object {
+        val EXTRA_ROUTE = "route"
+        val EXTRA_ROUTE_DETAIL = "route_details"
+    }
+
     var presenter: P?
     var context: Context
 

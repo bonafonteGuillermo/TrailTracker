@@ -3,6 +3,7 @@ package app.demo.example.com.trailtracker.routename
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.trailtracker.app.App
+import app.demo.example.com.trailtracker.app.BaseView.Companion.EXTRA_ROUTE
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.routename.injection.DaggerRouteNameComponent
 import app.demo.example.com.trailtracker.routename.injection.RouteNameContextModule
@@ -14,6 +15,8 @@ import javax.inject.Inject
  *
  */
 class RouteNameActivity : AppCompatActivity() {
+
+    val ROUTE = "USER_NAME"
 
     @Inject
     lateinit var view: IRouteNameView
@@ -34,8 +37,8 @@ class RouteNameActivity : AppCompatActivity() {
         view.presenter = presenter
 
         val bundle = intent.extras
-        if (bundle.getParcelable<Route>("route") != null){
-            var route = bundle.getParcelable<Route>("route")
+        if (bundle.getParcelable<Route>(EXTRA_ROUTE) != null){
+            var route = bundle.getParcelable<Route>(EXTRA_ROUTE)
             presenter.onCreate(route)
         }else{
             presenter.onCreate()
