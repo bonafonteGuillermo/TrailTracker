@@ -7,6 +7,7 @@ import app.demo.example.com.trailtracker.location.ILocationProvider
 import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.repository.IRepository
 import app.demo.example.com.trailtracker.rx.Schedulers
+import com.google.android.gms.maps.model.LatLng
 import io.reactivex.Observable
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -96,7 +97,7 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
     private fun locationReceived(location: Location) {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.DOWN
-        route.locations.add(location)
+        route.locations.add(LatLng(location.latitude,location.longitude))
         view.showLatitude(df.format(location.latitude).toString())
         view.showLongitude(df.format(location.longitude).toString())
         view.showAltitude(df.format(location.altitude).toString())

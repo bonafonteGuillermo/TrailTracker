@@ -25,7 +25,7 @@ import com.google.android.gms.maps.model.RoundCap
  */
 class MapView(context: AppCompatActivity) : IMapView, OnMapReadyCallback {
 
-    private val widthPx = 40
+    private val widthPx = 20
 
     override var context: Context = context
     override var presenter: IMapPresenter? = null

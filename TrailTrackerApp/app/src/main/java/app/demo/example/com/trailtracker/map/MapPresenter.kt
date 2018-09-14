@@ -28,13 +28,5 @@ class MapPresenter(private var view: IMapView, override var repository: IReposit
         subscription.dispose()
     }
 
-    override fun getRouteLatLongArray(): ArrayList<LatLng> {
-        val coordList = ArrayList<LatLng>()
-        route.locations?.forEach { location ->
-            if(location?.latitude != null && location?.longitude!=null) {
-                coordList.add(LatLng(location.latitude, location.longitude))
-            }
-        }
-        return coordList
-    }
+    override fun getRouteLatLongArray(): ArrayList<LatLng> = route.locations as ArrayList<LatLng>
 }

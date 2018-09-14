@@ -3,6 +3,7 @@ package app.demo.example.com.trailtracker.model
 import android.arch.persistence.room.*
 import android.location.Location
 import android.os.Parcelable
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.android.parcel.Parcelize
@@ -32,19 +33,19 @@ data class Route (
     var duration: Long? = null,
 
     @ColumnInfo(name = "locations")
-    var locations: MutableList<Location> = mutableListOf()
+    var locations: MutableList<LatLng> = mutableListOf()
 ) : Parcelable
 
 class RouteConverter {
 
     @TypeConverter
-    fun fromMutableList(locations: MutableList<Location>?): String {
+    fun fromMutableList(locations: MutableList<LatLng>?): String {
         return GsonBuilder().create().toJson(locations)
     }
 
     @TypeConverter
-    fun fromJson(json: String?): MutableList<Location> {
-        return Gson().fromJson(json, Array<Location>::class.java).toMutableList()
+    fun fromJson(json: String?): MutableList<LatLng> {
+        return Gson().fromJson(json, Array<LatLng>::class.java).toMutableList()
     }
 
     @TypeConverter
@@ -57,4 +58,3 @@ class RouteConverter {
         return date?.time
     }
 }
-

@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".routename.RouteNameActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".routes.RoutesActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".map.MapActivity"
