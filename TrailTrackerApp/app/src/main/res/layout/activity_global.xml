@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/primary_text">
 
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/top_constraint"
         android:layout_width="0dp"
@@ -29,21 +28,15 @@
 
             <TextView
                 android:id="@+id/title"
+                style="@style/global_layout_app_name_text_view"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:text="@string/app_name"
-                android:textColor="@color/secondary_text"
-                android:textSize="48sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
-
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/data_constraint"
@@ -58,48 +51,30 @@
 
             <TextView
                 android:id="@+id/tv_latitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                style="@style/global_layout_location_data_text_view"
                 android:text="@string/empty_latitude"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tv_longitude"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_longitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                style="@style/global_layout_location_data_text_view"
                 android:text="@string/empty_longitude"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tv_altitude"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_latitude" />
 
             <TextView
                 android:id="@+id/tv_altitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                style="@style/global_layout_location_data_text_view"
                 android:text="@string/empty_altitude"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_longitude" />
 
         </android.support.constraint.ConstraintLayout>
-
-
     </android.support.constraint.ConstraintLayout>
-
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/bottom_constraint"
@@ -113,12 +88,7 @@
 
         <Chronometer
             android:id="@+id/chronometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:textColor="@color/primary_text"
-            android:textSize="48sp"
-            android:textStyle="bold"
+            style="@style/global_layout_chronometer"
             app:layout_constraintBottom_toTopOf="@+id/btn_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,16 +97,8 @@
 
         <Button
             android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/drawable_circle"
-            android:padding="32dp"
+            style="@style/global_layout_btn_start_finish"
             android:text="@string/start"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,13 +109,11 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/btn_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_start"
-            android:visibility="gone"/>
-
-
+            app:layout_constraintTop_toTopOf="@+id/btn_start" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
