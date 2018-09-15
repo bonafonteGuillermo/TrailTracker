@@ -9,45 +9,30 @@
 
     <TextView
         android:id="@+id/tv_choose_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:text="@string/choose_a_name_for_your_route"
-        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="@id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toTopOf="@id/topGuideline" />
+        app:layout_constraintTop_toTopOf="@id/topGuideline"
+        style="@style/route_name_layout_choose_name_text_view" />
 
     <EditText
         android:id="@+id/et_route_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:inputType="text"
-        android:maxLines="1"
-        android:maxLength="30"
-        android:textSize="24sp"
         tools:text="@tools:sample/full_names"
         app:layout_constraintEnd_toEndOf="@id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_choose_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose_name"
+        style="@style/route_names_layout_edit_text" />
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
         android:text="@string/save"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:enabled="false"
-        android:textColor="@color/white"
-        android:background="@drawable/selector_button_save_route_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/route_names_layout_btn_save" />
 
 
-    <!--   **** GUIDELINES REGION ****   -->
-
+    <!--region GUIDELINES-->
     <android.support.constraint.Guideline
         android:id="@+id/topGuideline"
         android:layout_width="wrap_content"
@@ -69,5 +54,5 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
 
-    <!--   **** END GUIDELINES REGION ****   -->
+    <!--endregion-->
 </android.support.constraint.ConstraintLayout>

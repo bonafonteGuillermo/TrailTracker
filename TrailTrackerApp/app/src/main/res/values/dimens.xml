@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="global_layout_common_margin_start">16dp</dimen>
+    <dimen name="global_layout_chronometer_margin_bottom">24dp</dimen>
+    <dimen name="global_layout_btn_start_finish_padding">32dp</dimen>
+    <dimen name="global_layout_location_data_text_size">24sp</dimen>
+    <dimen name="global_layout_title_text_size">32sp</dimen>
+    <dimen name="global_layout_chronometer_text_size">48sp</dimen>
+    <dimen name="global_layout_btn_start_finish_text_size">24sp</dimen>
+
+    <dimen name="route_name_layout_btn_save_height">70dp</dimen>
+    <dimen name="route_name_layout_edit_text_margin_top">32dp</dimen>
+    <dimen name="route_name_layout_btn_save_text_size">24sp</dimen>
+    <dimen name="route_name_layout_edit_text_text_size">24sp</dimen>
+
+</resources>

@@ -9,8 +9,9 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <!--region GLOBAL LAYOUT STYLES -->
     <style name="global_layout_app_name_text_view">
-        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginStart">@dimen/global_layout_common_margin_start</item>
         <item name="android:layout_marginEnd">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:textColor">@color/secondary_text</item>
@@ -20,31 +21,58 @@
     <style name="global_layout_location_data_text_view">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginStart">@dimen/global_layout_common_margin_start</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/global_layout_location_data_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="global_layout_chronometer">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:layout_marginBottom">@dimen/global_layout_chronometer_margin_bottom</item>
         <item name="android:textColor">@color/primary_text</item>
-        <item name="android:textSize">48sp</item>
+        <item name="android:textSize">@dimen/global_layout_chronometer_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="global_layout_btn_start_finish">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">8dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
         <item name="android:background">@drawable/drawable_circle</item>
-        <item name="android:padding">32dp</item>
+        <item name="android:padding">@dimen/global_layout_btn_start_finish_padding</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/global_layout_btn_start_finish_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <!--endregion-->
+
+    <!--region ROUTE NAMES LAYOUT STYLES -->
+    <style name="route_name_layout_choose_name_text_view">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/global_layout_title_text_size</item>
+    </style>
+
+    <style name="route_names_layout_btn_save">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/route_name_layout_btn_save_height</item>
+        <item name="android:textSize">@dimen/route_name_layout_btn_save_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/selector_button_save_route_background</item>
+    </style>
+
+    <style name="route_names_layout_edit_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/route_name_layout_edit_text_margin_top</item>
+        <item name="android:inputType">text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:maxLength">30</item>
+        <item name="android:textSize">@dimen/route_name_layout_edit_text_text_size</item>
+    </style>
+    <!--endregion-->
 
 </resources>
