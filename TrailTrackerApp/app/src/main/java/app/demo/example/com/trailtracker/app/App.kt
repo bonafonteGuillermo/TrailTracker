@@ -1,10 +1,9 @@
 package app.demo.example.com.trailtracker.app
 
 import android.app.Application
-
 import app.demo.example.com.trailtracker.app.injection.AppComponent
-import app.demo.example.com.trailtracker.app.injection.DaggerAppComponent
 import app.demo.example.com.trailtracker.app.injection.AppContextModule
+import app.demo.example.com.trailtracker.app.injection.DaggerAppComponent
 
 /**
  *

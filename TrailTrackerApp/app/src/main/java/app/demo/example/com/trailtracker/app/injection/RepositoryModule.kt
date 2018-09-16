@@ -3,9 +3,9 @@ package app.demo.example.com.trailtracker.app.injection
 import app.demo.example.com.trailtracker.data.AppDatabase
 import app.demo.example.com.trailtracker.repository.IRepository
 import app.demo.example.com.trailtracker.repository.Repository
+import app.demo.example.com.trailtracker.rx.Schedulers
 import dagger.Module
 import dagger.Provides
-import app.demo.example.com.trailtracker.rx.Schedulers
 
 /**
  * Created by Guillermo Bonafonte Criado

@@ -3,7 +3,6 @@ package app.demo.example.com.trailtracker.routes
 import app.demo.example.com.trailtracker.app.BasePresenter
 import app.demo.example.com.trailtracker.app.BaseView
 import app.demo.example.com.trailtracker.model.Route
-import app.demo.example.com.trailtracker.utils.snack
 
 /**
  *

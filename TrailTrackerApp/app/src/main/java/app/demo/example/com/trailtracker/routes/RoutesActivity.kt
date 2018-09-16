@@ -3,9 +3,8 @@ package app.demo.example.com.trailtracker.routes
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.trailtracker.app.App
-import app.demo.example.com.trailtracker.routes.injection.RoutesContextModule
 import app.demo.example.com.trailtracker.routes.injection.DaggerRoutesComponent
-
+import app.demo.example.com.trailtracker.routes.injection.RoutesContextModule
 import javax.inject.Inject
 
 /**

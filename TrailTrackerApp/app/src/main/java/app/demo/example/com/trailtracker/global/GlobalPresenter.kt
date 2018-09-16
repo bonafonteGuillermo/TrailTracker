@@ -21,7 +21,7 @@ import java.util.*
  */
 class GlobalPresenter(private var view: IGlobalView, override var repository: IRepository, private var schedulers: Schedulers, var locationProvider: ILocationProvider) : IGlobalPresenter {
 
-    private lateinit var route: Route
+    private var route : Route = Route()
 
     override fun onCreate() {
     }
@@ -59,13 +59,12 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
     private fun startNewRoute() {
         view.setStartButtonText(view.getStringResource(R.string.finish))
         view.startChronometer()
-        route = Route()
         route.startDate = Calendar.getInstance().time
     }
 
     private fun getCurrentLocation() {
         val observable = locationProvider.getMyLocation()
-                .observeOn(schedulers.internet())
+                .subscribeOn(schedulers.internet())
                 .observeOn(schedulers.androidThread())
 
         onFirstLocationReceived(observable)
@@ -97,7 +96,7 @@ class GlobalPresenter(private var view: IGlobalView, override var repository: IR
     private fun locationReceived(location: Location) {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.DOWN
-        route.locations.add(LatLng(location.latitude,location.longitude))
+        route.locations.add(LatLng(location.latitude, location.longitude))
         view.showLatitude(df.format(location.latitude).toString())
         view.showLongitude(df.format(location.longitude).toString())
         view.showAltitude(df.format(location.altitude).toString())

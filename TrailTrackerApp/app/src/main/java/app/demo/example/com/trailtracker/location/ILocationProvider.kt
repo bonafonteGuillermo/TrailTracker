@@ -9,7 +9,7 @@ import io.reactivex.Observable
  *
  */
 interface ILocationProvider {
-    fun getMyLocation() : Observable<Location>
+    fun getMyLocation(): Observable<Location>
     fun permissionsGranted()
     fun stopLocationUpdates()
 }

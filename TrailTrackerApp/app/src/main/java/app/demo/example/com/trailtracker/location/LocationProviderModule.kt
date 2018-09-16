@@ -1,6 +1,5 @@
 package app.demo.example.com.trailtracker.location
 
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import app.demo.example.com.trailtracker.global.injection.GlobalScope
 import dagger.Module

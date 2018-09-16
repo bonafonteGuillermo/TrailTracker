@@ -4,12 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import app.demo.example.com.trailtracker.model.Route
-import kotlin.properties.Delegates
 import app.demo.example.com.trailtracker.R
+import app.demo.example.com.trailtracker.model.Route
 import app.demo.example.com.trailtracker.utils.toCustomDateFormatString
 import app.demo.example.com.trailtracker.utils.toCustomStringFormat
 import kotlinx.android.synthetic.main.route_item_layout.view.*
+import kotlin.properties.Delegates
 
 typealias Listener = (Route) -> Unit
 

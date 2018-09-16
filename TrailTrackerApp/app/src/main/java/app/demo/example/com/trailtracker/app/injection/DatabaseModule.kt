@@ -1,8 +1,8 @@
 package app.demo.example.com.trailtracker.app.injection
 
-import app.demo.example.com.trailtracker.data.AppDatabase
-import android.arch.persistence.room.*
+import android.arch.persistence.room.Room
 import android.content.Context
+import app.demo.example.com.trailtracker.data.AppDatabase
 import dagger.Module
 import dagger.Provides
 

@@ -12,21 +12,21 @@ import app.demo.example.com.trailtracker.model.Route
  */
 interface IGlobalPresenter : BasePresenter {
     fun permissionsGranted()
-    fun startLocation(buttonText : String)
+    fun startLocation(buttonText: String)
     fun permissionsDenied()
 }
 
 interface IGlobalView : BaseView<IGlobalPresenter> {
-    fun showLatitude(latitude : String)
-    fun showLongitude(longitude : String)
-    fun showAltitude(altitude : String)
-    fun showSnack(string : String)
-    fun setStartButtonText(text : String)
+    fun showLatitude(latitude: String)
+    fun showLongitude(longitude: String)
+    fun showAltitude(altitude: String)
+    fun showSnack(string: String)
+    fun setStartButtonText(text: String)
     fun startChronometer()
     fun stopChronometer()
-    fun getChronometerTime() : Long
-    fun getStringResource(id : Int) : String
-    fun navigateToSetRouteNameScreen(route : Route)
+    fun getChronometerTime(): Long
+    fun getStringResource(id: Int): String
+    fun navigateToSetRouteNameScreen(route: Route)
     fun resetView()
     fun showProgressBar()
     fun hideProgressBar()

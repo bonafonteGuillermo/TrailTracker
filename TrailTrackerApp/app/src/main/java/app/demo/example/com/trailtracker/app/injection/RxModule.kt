@@ -1,9 +1,9 @@
 package app.demo.example.com.trailtracker.app.injection
 
+import app.demo.example.com.trailtracker.rx.AppSchedulers
+import app.demo.example.com.trailtracker.rx.Schedulers
 import dagger.Module
 import dagger.Provides
-import app.demo.example.com.trailtracker.rx.Schedulers
-import app.demo.example.com.trailtracker.rx.AppSchedulers
 
 /**
  *

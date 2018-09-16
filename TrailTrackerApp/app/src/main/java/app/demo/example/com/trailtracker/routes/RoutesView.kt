@@ -12,10 +12,9 @@ import app.demo.example.com.trailtracker.R
 import app.demo.example.com.trailtracker.app.BaseView.Companion.EXTRA_ROUTE_DETAIL
 import app.demo.example.com.trailtracker.map.MapActivity
 import app.demo.example.com.trailtracker.model.Route
-import app.demo.example.com.trailtracker.routename.RouteNameActivity
-import kotlinx.android.synthetic.main.activity_routes.view.*
 import app.demo.example.com.trailtracker.routes.adapter.RoutesAdapter
 import app.demo.example.com.trailtracker.utils.snack
+import kotlinx.android.synthetic.main.activity_routes.view.*
 
 
 /**

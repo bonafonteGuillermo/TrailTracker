@@ -10,7 +10,6 @@ import app.demo.example.com.trailtracker.global.injection.DaggerGlobalComponent
 import app.demo.example.com.trailtracker.global.injection.GlobalContextModule
 import app.demo.example.com.trailtracker.location.LocationProviderImplementation.Companion.REQUEST_CHECK_SETTINGS
 import app.demo.example.com.trailtracker.location.LocationProviderImplementation.Companion.REQUEST_LOCATION
-
 import javax.inject.Inject
 
 /**
@@ -51,15 +50,15 @@ class GlobalActivity : AppCompatActivity() {
             when (requestCode) {
                 REQUEST_LOCATION -> presenter.permissionsGranted()
             }
-        }else{
+        } else {
             presenter.permissionsDenied()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when(requestCode) {
+        when (requestCode) {
             REQUEST_CHECK_SETTINGS ->
-                when(resultCode){
+                when (resultCode) {
                     Activity.RESULT_OK -> presenter.permissionsGranted()
                     else -> presenter.permissionsDenied()
                 }

@@ -1,20 +1,18 @@
 package app.demo.example.com.trailtracker.routename
 
 import android.content.Context
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import app.demo.example.com.trailtracker.R
-import app.demo.example.com.trailtracker.model.Route
+import app.demo.example.com.trailtracker.routes.RoutesActivity
 import app.demo.example.com.trailtracker.utils.snack
 import app.demo.example.com.trailtracker.utils.textChanged
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_route_name.view.*
-import app.demo.example.com.trailtracker.routes.RoutesActivity
 
 /**
  *

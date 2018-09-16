@@ -1,10 +1,10 @@
 package app.demo.example.com.trailtracker.app
 
 import android.app.Activity
-import android.content.*
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import app.demo.example.com.trailtracker.utils.snack
 
 /**
  * Created by Guillermo Bonafonte Criado

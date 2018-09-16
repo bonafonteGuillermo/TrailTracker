@@ -1,11 +1,13 @@
 package app.demo.example.com.trailtracker.global.injection
 
 import android.support.v7.app.AppCompatActivity
-import app.demo.example.com.trailtracker.global.*
+import app.demo.example.com.trailtracker.global.GlobalPresenter
+import app.demo.example.com.trailtracker.global.GlobalView
+import app.demo.example.com.trailtracker.global.IGlobalPresenter
+import app.demo.example.com.trailtracker.global.IGlobalView
 import app.demo.example.com.trailtracker.location.ILocationProvider
-import app.demo.example.com.trailtracker.location.LocationProviderModule
-import app.demo.example.com.trailtracker.rx.Schedulers
 import app.demo.example.com.trailtracker.repository.IRepository
+import app.demo.example.com.trailtracker.rx.Schedulers
 import dagger.Module
 import dagger.Provides
 

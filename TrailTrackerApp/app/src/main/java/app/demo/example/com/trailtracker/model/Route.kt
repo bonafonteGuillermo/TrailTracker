@@ -1,7 +1,6 @@
 package app.demo.example.com.trailtracker.model
 
 import android.arch.persistence.room.*
-import android.location.Location
 import android.os.Parcelable
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson

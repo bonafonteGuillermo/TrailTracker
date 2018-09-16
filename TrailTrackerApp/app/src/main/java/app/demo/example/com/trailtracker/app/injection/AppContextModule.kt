@@ -18,5 +18,5 @@ class AppContextModule(context: Context) {
     @AppScope
     @Provides
     fun provideAppContext(): Context = context
-    
+
 }

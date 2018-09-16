@@ -17,6 +17,7 @@
 
     <EditText
         android:id="@+id/et_route_name"
+        android:hint="@string/hint_choose_route_name"
         tools:text="@tools:sample/full_names"
         app:layout_constraintEnd_toEndOf="@id/endGuideline"
         app:layout_constraintStart_toStartOf="@id/startGuideline"

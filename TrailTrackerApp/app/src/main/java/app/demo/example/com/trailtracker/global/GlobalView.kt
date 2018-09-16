@@ -40,15 +40,15 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
     override fun showSnack(string: String) = view.snack(string)
 
     override fun showLatitude(latitude: String) {
-        view.tv_latitude.text = context.getString(R.string.latitude,latitude)
+        view.tv_latitude.text = context.getString(R.string.latitude, latitude)
     }
 
     override fun showLongitude(longitude: String) {
-        view.tv_longitude.text = context.getString(R.string.longitude,longitude)
+        view.tv_longitude.text = context.getString(R.string.longitude, longitude)
     }
 
     override fun showAltitude(altitude: String) {
-        view.tv_altitude.text = context.getString(R.string.altitude,altitude)
+        view.tv_altitude.text = context.getString(R.string.altitude, altitude)
     }
 
     override fun setStartButtonText(text: String) {
@@ -72,7 +72,7 @@ class GlobalView(context: AppCompatActivity) : IGlobalView {
         view.progressBar.visibility = View.GONE
     }
 
-    override fun resetView(){
+    override fun resetView() {
         view.chronometer.base = SystemClock.elapsedRealtime()
         view.tv_latitude.text = getStringResource(R.string.empty_latitude)
         view.tv_longitude.text = getStringResource(R.string.empty_longitude)
